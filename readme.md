@@ -13,3 +13,9 @@ To get it, you just need to access the 'raw' data file, `latest.json` via AJAX, 
 Daily exchange rates are also available historically - the files are saved in the format: `historical/[yyyy-mm-dd].json`
 
 ### More info and homepage/documentation coming soon..
+
+
+## Changelog and updates
+
+### 2011-10-11
+* Coming out of alpha testing, commencing scrapy-scrape! [currencybot]
