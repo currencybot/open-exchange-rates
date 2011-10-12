@@ -16,12 +16,24 @@
  */
 
 var sys = require('sys'),
+	argv = require('optimist').argv,
 	_ = require('underscore'),
 	httpAgent = require('http-agent'),
 	async = require('async'),
 	date = require('datejs'),
 	fs = require('fs'),
 	exec = require('child_process').exec;
+
+
+// Make sure we have all default arguments:
+argv = _.defaults(argv, {
+	sleep : 3600000,  // time between crawls, default 1 hour
+	throttle : 10000, // time between requests, default 10 secs
+	nocommit : false, // pass --nocommit to run the scraper without `git commit`
+	nopush : false,   // pass --nopush to run without `git push`
+	log : false       // pass --log to write to logfiles
+});
+
 
 // Scraper setup:
 var baseCurrency = "USD",
@@ -124,6 +136,26 @@ var baseCurrency = "USD",
 	responses = {};
 
 
+// Log function, only logs if `--log` specified in argv:
+function log() {
+	if( argv.log ) {
+		console.log.apply(console, [].slice.call(arguments));
+	}
+	return false;
+};
+
+// Returns a date object set to UTC time for dateJS chaining:
+function getUTC() {
+	return Date.parse('now').add({ hours: -parseInt(Date.today().getUTCOffset(), 10) });
+}
+
+// Starts the agent with a log message:
+function startAgent() {
+	agent.start();
+	log("[" + new Date().toUTCString() + "]: agent started");
+}
+
+
 // Create the HTTP agent:
 var agent = httpAgent.create('www.google.com', requests);
 
@@ -143,15 +175,11 @@ agent.addListener('next', function (e, agent) {
 		responses[agent.current.cc] = parseFloat(data.rhs.replace(/[^0-9-.]/g, ''));
 	}
 
-	// Move on to the next request:
-	agent.next();
+	// Move on to the next request after `throttle` milliseconds (spreads the requests to avoid bans):
+	setTimeout(function() {
+		agent.next();
+	}, argv.throttle );
 });
-
-
-// Return a date object set to UTC time for dateJS:
-function getUTC() {
-	return Date.parse('now').add({ hours: -parseInt(Date.today().getUTCOffset(), 10) });
-}
 
 
 // Save the file and push to git when agent is done collecting data:
@@ -183,23 +211,28 @@ agent.addListener('stop', function (e, agent) {
 		],
 		function(err) {
 			// To do: add some error/success logging:
-			if( !err ) {
+			if( !err && !argv.nocommit ) {
 				// Commit changes to git repository and push when done:
 				exec('git add . && git commit -am "exchange rates as of [' + new Date().toUTCString() + ']"', function(err, stdout, stderr) {
-					exec('git push origin master');
+					if ( !argv.nopush ) {
+						exec('git push origin master');
+					}
 				});
 			}
 		}
 	);
+
+	log("[" + new Date().toUTCString() + "]: agent finished");
 });
 
 
 // Do the dirty business:
-agent.start();
+startAgent();
 
-// Set the agent to run every hour:
+// Set the agent to run every `sleepyTime` milliseconds (default 1 hour):
 setInterval(function() {
-	agent.start();
-}, 3600000);
+	startAgent();
+}, argv.sleep);
+
 
 // That's all, folks!
