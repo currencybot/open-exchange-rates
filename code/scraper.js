@@ -151,6 +151,7 @@ function getUTC() {
 
 // Starts the agent with a log message:
 function startAgent() {
+	responses = {};
 	agent.start();
 	log("[" + new Date().toUTCString() + "]: agent started");
 }
