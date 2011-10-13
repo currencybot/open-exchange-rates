@@ -17,5 +17,9 @@ Daily exchange rates are also available historically - the files are saved in th
 
 ## Changelog and updates
 
+### 2011-10-13
+* Restarting the crawl! [currencybot]
+* Pushed a fix for the broken crawler. That issue kinda invalidates most of the commits up till now, but there you go. [josscrowcroft]
+
 ### 2011-10-11
 * Coming out of alpha testing, commencing scrapy-scrape! [currencybot]
