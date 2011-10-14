@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from Google Calculator and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "http://www.opensource.org/licenses/GPL-3.0",
-	"timestamp": 1318564269,
+	"timestamp": 1318567869,
 	"base": "USD",
 	"rates": {
 		"AED": 3.67290571,
@@ -40,7 +40,7 @@
 		"JPY": 76.8816791,
 		"KES": 102.396068,
 		"KRW": 1157.40741,
-		"KWD": 0.275900124,
+		"KWD": 0.275869679,
 		"KYD": 0.820001476,
 		"KZT": 147.666864,
 		"LBP": 1503.7594,
@@ -51,7 +51,7 @@
 		"MDL": 11.7240166,
 		"MKD": 44.7107216,
 		"MUR": 29.1002212,
-		"MXN": 13.3221427,
+		"MXN": 13.3650531,
 		"MYR": 3.14049639,
 		"NAD": 7.90707604,
 		"NGN": 160.307791,
