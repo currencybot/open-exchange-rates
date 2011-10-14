@@ -2,7 +2,7 @@
  * scraper.js v0.1 - part of the open-source exchange rates project
  * by @josscrowcroft - josscrowcroft.com
  *
- * Scrapes currency conversion rates one-by-one from Google Calculator, saves them
+ * Scrapes currency conversion rates one-by-one from a web service, then saves them
  * into a formatted JSON API, then commits and pushes changes to git repository.
  *
  * Uses 'forever' to run the script as a daemon and restart in case of error/failure.
@@ -38,93 +38,131 @@ argv = _.defaults(argv, {
 // Scraper setup:
 var baseCurrency = "USD",
 	currencies = [
-		"AED",
-		"ANG",
-		"ARS",
-		"AUD",
-		"BGN",
-		"BHD",
-		"BND",
-		"BOB",
-		"BRL",
-		"BWP",
-		"CAD",
-		"CHF",
-		"CLP",
-		"CNY",
-		"COP",
-		"CRC",
-		"CZK",
-		"DKK",
-		"DOP",
-		"DZD",
-		"EGP",
-		"EUR",
-		"FJD",
-		"GBP",
-		"HKD",
-		"HNL",
-		"HRK",
-		"HUF",
-		"IDR",
-		"ILS",
-		"INR",
-		"JMD",
-		"JOD",
-		"JPY",
-		"KES",
-		"KRW",
-		"KWD",
-		"KYD",
-		"KZT",
-		"LBP",
-		"LKR",
-		"LTL",
-		"LVL",
-		"MAD",
-		"MDL",
-		"MKD",
-		"MUR",
-		"MXN",
-		"MYR",
-		"NAD",
-		"NGN",
-		"NIO",
-		"NOK",
-		"NPR",
-		"NZD",
-		"OMR",
-		"PEN",
-		"PGK",
-		"PHP",
-		"PKR",
-		"PLN",
-		"PYG",
-		"QAR",
-		"RON",
-		"RSD",
-		"RUB",
-		"SAR",
-		"SCR",
-		"SEK",
-		"SGD",
-		"SLL",
-		"SVC",
-		"THB",
-		"TND",
-		"TRY",
-		"TTD",
-		"TWD",
-		"TZS",
-		"UAH",
-		"UGX",
-		"USD",
-		"UYU",
-		"UZS",
-		"VND",
-		"YER",
-		"ZAR",
-		"ZMK"
+		"AED", // United Arab Emirates Dirham
+		"ALL", // Albanian Lek
+		"ANG", // Neth Antilles Guilder
+		"ARS", // Argentine Peso
+		"AUD", // Australian Dollar
+		"AWG", // Aruba Florin
+		"BBD", // Barbadian Dollar
+		"BDT", // Bangladesh Taka
+		"BGN", // Bulgarian Lev
+		"BHD", // Bahraini Dinar
+		"BIF", // Burundi Franc
+		"BMD", // Bermuda Dollar
+		"BND", // Brunei Dollar
+		"BOB", // Bolivian Boliviano
+		"BRL", // Brazilian Real
+		"BSD", // Bahamian Dollar
+		"BTN", // Bhutan Ngultrum
+		"BYR", // Belarus Ruble
+		"BZD", // Belize Dollar
+		"CAD", // Canadian Dollar
+		"CHF", // Swiss Franc
+		"CLP", // Chilean Peso
+		"CNY", // Chinese Yuan
+		"COP", // Colombian Peso
+		"CRC", // Costa Rica Colon
+//		"CYP", // Cyprus Pound
+		"CZK", // Czech Koruna
+		"DKK", // Danish Krone
+		"DOP", // Dominican Peso
+		"DZD", // Algerian Dinar
+		"EEK", // Estonian Kroon
+		"EGP", // Egyptian Pound
+		"ETB", // Ethiopian Birr
+		"EUR", // Euro
+		"FJD", // Fiji Dollar
+		"GBP", // British Pound
+		"GMD", // Gambian Dalasi
+		"GNF", // Guinea Franc
+		"GTQ", // Guatemala Quetzal
+		"HKD", // Hong Kong Dollar
+		"HNL", // Honduras Lempira
+		"HRK", // Croatian Kuna
+		"HTG", // Haiti Gourde
+		"HUF", // Hungarian Forint
+		"IDR", // Indonesian Rupiah
+		"ILS", // Israeli Sheqel
+		"INR", // Indian Rupee
+		"IQD", // Iraqi Dinar
+		"IRR", // Iran Rial
+		"ISK", // Icelandic Krona
+		"JMD", // Jamaican Dollar
+		"JOD", // Jordanian Dinar
+		"JPY", // Japanese Yen
+		"KES", // Kenyan Shilling
+		"KMF", // Comoros Franc
+		"KRW", // South Korean Won
+		"KWD", // Kuwaiti Dinar
+		"KYD", // Cayman Islands Dollar
+		"KZT", // Kazakhstan Tenge
+		"LBP", // Lebanese Pound
+		"LKR", // Sri Lankan Rupee
+		"LSL", // Lesotho Loti
+		"LTL", // Lithuanian Litas
+		"LVL", // Latvian Lats
+		"MAD", // Moroccan Dirham
+		"MDL", // Moldovan Leu
+		"MKD", // Macedonian Denar
+		"MNT", // Mongolian Tugrik
+		"MOP", // Macau Pataca
+		"MRO", // Mauritania Ougulya
+		"MUR", // Mauritius Rupee
+		"MVR", // Maldives Rufiyaa
+		"MWK", // Malawi Kwacha
+		"MXN", // Mexican Peso
+		"MYR", // Malaysian Ringgit
+		"NAD", // Namibian Dollar
+		"NGN", // Nigerian Naira
+		"NIO", // Nicaragua Cordoba
+		"NOK", // Norwegian Krone
+		"NPR", // Nepalese Rupee
+		"NZD", // New Zealand Dollar
+		"OMR", // Omani Rial
+		"PAB", // Panamanian Balboa
+		"PEN", // Peruvian Nuevo Sol
+		"PGK", // Papua New Guinea Kina
+		"PHP", // Philippine Peso
+		"PKR", // Pakistani Rupee
+		"PLN", // Polish Zloty
+		"PYG", // Paraguayan Guarani
+		"QAR", // Qatari Riyal
+		"RON", // Romanian Leu
+		"RUB", // Russian Rouble
+		"RWF", // Rwanda Franc
+		"SAR", // Saudi Riyal
+		"SBD", // Solomon Islands Dollar
+		"SCR", // Seychelles Rupee
+//		"SDD", // Sudanese Dinar
+		"SEK", // Swedish Krona
+		"SGD", // Singapore Dollar
+//		"SIT", // Slovenian Tolar
+		"SKK", // Slovak Koruna
+		"SLL", // Sierra Leone Leone
+		"SVC", // El Salvador Colon
+		"SZL", // Swaziland Lilageni
+		"THB", // Thai Baht
+		"TND", // Tunisian Dinar
+		"TOP", // Tonga Paanga
+		"TRY", // Turkish Lira
+		"TTD", // Trinidad Tobago Dollar
+		"TWD", // Taiwan Dollar
+		"TZS", // Tanzanian Shilling
+		"UAH", // Ukraine Hryvnia
+		"UGX", // Ugandan Shilling
+		"USD", // United States Dollar
+		"UYU", // Uruguayan New Peso
+//		"VEF", // Venezuelan bolivar
+		"VUV", // Vanuatu Vatu
+		"WST", // Samoa Tala
+		"XAF", // Central African CFA franc
+		"XCD", // East Caribbean Dollar
+		"XOF", // West African CFA franc
+		"XPF", // Pacific Franc
+		"YER", // Yemen Riyal
+		"ZAR", // South African Rand
+		"ZMK"  // Zambian Kwacha
 	],
 	agent,
 	requests,
@@ -152,29 +190,22 @@ function startAgent() {
 		return {
 			method: 'GET',
 			cc : each,
-			uri: 'ig/calculator?hl=en&q=1' + baseCurrency + '=?' + each
+			uri : 'remote/ER-ERC-AJAX.php?ConvertTo=' + each + '&ConvertFrom=' + baseCurrency + '&amount=1000000'
 		}
 	});
 	responses = {};
 
 	// Create the HTTP agent:
-	agent = httpAgent.create('www.google.com', requests);
+	agent = httpAgent.create('www.currency.me.uk', requests);
 
 
 	// The scraper:
 	agent.addListener('next', function (e, agent) {
-		var data;
-	log(agent.current.cc);
-		// Try to parse JSON with cleaned up calculator response:
-		try {
-			data = JSON.parse(agent.body.replace('lhs', '"lhs"').replace('rhs', '"rhs"').replace('error', '"error"').replace('icc', '"icc"'));
-		}
-		catch(e) {}
-	
-		// Add this currency conversion rate to the responses object if valid:
-		if ( data ) {
-			responses[agent.current.cc] = parseFloat(data.rhs.replace(/[^0-9-.]/g, ''));
-		}
+		var data = parseFloat((parseFloat(agent.body.replace(/[^0-9-.]/g, '')) / 1000000).toFixed(8));
+		// log(agent.current.cc, ":", data);
+
+		// Add this currency conversion rate to the responses object:
+		responses[agent.current.cc] = data;
 	
 		// Move on to the next request after `throttle` milliseconds (spreads the requests to avoid bans):
 		setTimeout(function() {
@@ -188,8 +219,8 @@ function startAgent() {
 	
 		// Build API data:
 		var api = {
-			disclaimer : "This data is collected from Google Calculator and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
-			license : "http://www.opensource.org/licenses/GPL-3.0",
+			disclaimer : "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
+			license : "all code open-source under GPL v3 [http://www.opensource.org/licenses/GPL-3.0]. all data made available by various providers; copyright may apply; not for resale; no warranties given.",
 			timestamp : Math.round( ( getUTC() ).getTime() / 1000 ),
 			base: baseCurrency,
 			rates : responses
@@ -201,13 +232,13 @@ function startAgent() {
 		async.parallel(
 			[
 				function(callback) {
-					fs.writeFile("latest.json", JSON.stringify(api, false, "\t"), function(err) {
+					fs.writeFile("latest.json", JSON.stringify(api, false, "\t") + "\n", function(err) {
 						callback(err);
 					});
 		 		},
 				function(callback) {
 					var filename = "./historical/" + (getUTC()).toString("yyyy-MM-dd") + ".json";
-					fs.writeFile(filename, JSON.stringify(api, false, "\t"), function(err) {
+					fs.writeFile(filename, JSON.stringify(api, false, "\t") + "\n", function(err) {
 						callback(err);
 					});
 		 		}
