@@ -2,9 +2,9 @@
 
 A free, hourly-updating, nodeJS- and GitHub-powered API that provides exchange rates for 120+ currencies relative to USD.
 
-Every hour, [Currency Bot](http://currencybot.github.com) queries a provider API, collecting all the conversion rates for all currencies one-by-one, then saves them into a formatted API JSON file and automatically pushes it to GitHub for everyone to use as an open-source API.
+Every hour, [Currency Bot](http://currencybot.github.com) queries a currency conversion provider ([currency.me.uk](http://currency.me.uk), formerly the Google Calculator API, and potentially a few others in the near future) collecting all the conversion rates for all currencies one-by-one, then saving them into a formatted API JSON file and pushing it to GitHub for everyone to use as an open-source API.
 
-You can use this data to perform JavaScript currency conversion on the client-side (eg. for a web-app or online store) or for back-end processing (eg. databases, analytics, whatever).
+You can use this data to perform JavaScript currency conversion on the client-side (eg. for a web-app or online store - try [money.js](http://josscrowcroft.github.com/money.js)) or for back-end processing (eg. databases, analytics, whatever).
 
 It's mirrored on [openexchangerates.org](http://openexchangerates.org/latest.php) with friendly `Access-Control` HTTP headers, so that you can load it in via AJAX with a cross-domain request without worrying about browser security restrictions.
 
@@ -21,10 +21,11 @@ Check out **[josscrowcroft.github.com/open-exchange-rates](http://josscrowcroft.
 
 Originally designed for use with **[money.js](http://josscrowcroft.github.com/money.js)**, a tiny (1kb) JavaScript currency conversion library, for client-side and server-side use.
 
+
 ## Changelog and updates
 
 ### 2011-10-14
-* Rewrote the scraper to use a different provider without the TOS grey-area, until we know that Google won't sue for (ab)using their Calculator API in this way.ÊAlso doesn't require parsing like before. [josscrowcroft]
+* Rewrote the scraper to use a different provider without the TOS grey-area, until we know that Google won't sue for (ab)using their Calculator API in this way. Also, the data doesn't require parsing like before. [josscrowcroft]
 
 ### 2011-10-13
 * Restarting the crawl! [currencybot]
