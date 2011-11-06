@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "all code open-source under GPL v3 [http://www.opensource.org/licenses/GPL-3.0]. all data made available by various providers; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1320558248,
+	"timestamp": 1320561849,
 	"base": "USD",
 	"rates": {
 		"AED": 3.66999925,
@@ -62,7 +62,7 @@
 		"KWD": 0.27571475,
 		"KYD": 0.81975975,
 		"KZT": 147.94187207,
-		"LBP": 1449.83035625,
+		"LBP": 1504.04045255,
 		"LKR": 109.83563267,
 		"LSL": 7.89667947,
 		"LTL": 2.50575666,
