@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "all code open-source under GPL v3 [http://www.opensource.org/licenses/GPL-3.0]. all data made available by various providers; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1321207532,
+	"timestamp": 1321211132,
 	"base": "USD",
 	"rates": {
 		"AED": 3.66999869,
@@ -113,17 +113,17 @@
 		"TWD": 30.17320727,
 		"TZS": 1752.62743133,
 		"UAH": 7.99971991,
-		"UGX": 2602.24316115,
+		"UGX": 2599.60574161,
 		"USD": 1,
-		"UYU": 19.70662194,
-		"VUV": 91.06105326,
-		"WST": 2.33293291,
-		"XAF": 476.99520114,
-		"XCD": 2.6992338,
-		"XOF": 479.4525373,
-		"XPF": 87.23145964,
-		"YER": 214.28378656,
-		"ZAR": 7.91509557,
-		"ZMK": 5044.50129152
+		"UYU": 19.68664892,
+		"VUV": 90.96876127,
+		"WST": 2.33136573,
+		"XAF": 476.67477344,
+		"XCD": 2.69742055,
+		"XOF": 479.13045885,
+		"XPF": 87.16852325,
+		"YER": 214.12918354,
+		"ZAR": 7.89332562,
+		"ZMK": 5040.86174811
 	}
 }
