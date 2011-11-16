@@ -28,7 +28,7 @@ var sys = require('sys'),
 // Make sure we have all default arguments:
 argv = _.defaults(argv, {
 	sleep : 3600000,  // time between crawls, default 1 hour
-	throttle : 10000, // time between requests, default 10 secs
+	throttle : 0, // time between requests, default 10 secs
 	nocommit : false, // pass --nocommit to run the scraper without `git commit`
 	nopush : false,   // pass --nopush to run without `git push`
 	log : false       // pass --log to write to logfiles
@@ -37,133 +37,6 @@ argv = _.defaults(argv, {
 
 // Scraper setup:
 var baseCurrency = "USD",
-	currencies = [
-		"AED", // United Arab Emirates Dirham
-		"ALL", // Albanian Lek
-		"ANG", // Neth Antilles Guilder
-		"ARS", // Argentine Peso
-		"AUD", // Australian Dollar
-		"AWG", // Aruba Florin
-		"BBD", // Barbadian Dollar
-		"BDT", // Bangladesh Taka
-		"BGN", // Bulgarian Lev
-		"BHD", // Bahraini Dinar
-		"BIF", // Burundi Franc
-		"BMD", // Bermuda Dollar
-		"BND", // Brunei Dollar
-		"BOB", // Bolivian Boliviano
-		"BRL", // Brazilian Real
-		"BSD", // Bahamian Dollar
-		"BTN", // Bhutan Ngultrum
-		"BYR", // Belarus Ruble
-		"BZD", // Belize Dollar
-		"CAD", // Canadian Dollar
-		"CHF", // Swiss Franc
-		"CLP", // Chilean Peso
-		"CNY", // Chinese Yuan
-		"COP", // Colombian Peso
-		"CRC", // Costa Rica Colon
-//		"CYP", // Cyprus Pound
-		"CZK", // Czech Koruna
-		"DKK", // Danish Krone
-		"DOP", // Dominican Peso
-		"DZD", // Algerian Dinar
-		"EEK", // Estonian Kroon
-		"EGP", // Egyptian Pound
-		"ETB", // Ethiopian Birr
-		"EUR", // Euro
-		"FJD", // Fiji Dollar
-		"GBP", // British Pound
-		"GMD", // Gambian Dalasi
-		"GNF", // Guinea Franc
-		"GTQ", // Guatemala Quetzal
-		"HKD", // Hong Kong Dollar
-		"HNL", // Honduras Lempira
-		"HRK", // Croatian Kuna
-		"HTG", // Haiti Gourde
-		"HUF", // Hungarian Forint
-		"IDR", // Indonesian Rupiah
-		"ILS", // Israeli Sheqel
-		"INR", // Indian Rupee
-		"IQD", // Iraqi Dinar
-		"IRR", // Iran Rial
-		"ISK", // Icelandic Krona
-		"JMD", // Jamaican Dollar
-		"JOD", // Jordanian Dinar
-		"JPY", // Japanese Yen
-		"KES", // Kenyan Shilling
-		"KMF", // Comoros Franc
-		"KRW", // South Korean Won
-		"KWD", // Kuwaiti Dinar
-		"KYD", // Cayman Islands Dollar
-		"KZT", // Kazakhstan Tenge
-		"LBP", // Lebanese Pound
-		"LKR", // Sri Lankan Rupee
-		"LSL", // Lesotho Loti
-		"LTL", // Lithuanian Litas
-		"LVL", // Latvian Lats
-		"MAD", // Moroccan Dirham
-		"MDL", // Moldovan Leu
-		"MKD", // Macedonian Denar
-		"MNT", // Mongolian Tugrik
-		"MOP", // Macau Pataca
-		"MRO", // Mauritania Ougulya
-		"MUR", // Mauritius Rupee
-		"MVR", // Maldives Rufiyaa
-		"MWK", // Malawi Kwacha
-		"MXN", // Mexican Peso
-		"MYR", // Malaysian Ringgit
-		"NAD", // Namibian Dollar
-		"NGN", // Nigerian Naira
-		"NIO", // Nicaragua Cordoba
-		"NOK", // Norwegian Krone
-		"NPR", // Nepalese Rupee
-		"NZD", // New Zealand Dollar
-		"OMR", // Omani Rial
-		"PAB", // Panamanian Balboa
-		"PEN", // Peruvian Nuevo Sol
-		"PGK", // Papua New Guinea Kina
-		"PHP", // Philippine Peso
-		"PKR", // Pakistani Rupee
-		"PLN", // Polish Zloty
-		"PYG", // Paraguayan Guarani
-		"QAR", // Qatari Riyal
-		"RON", // Romanian Leu
-		"RUB", // Russian Rouble
-		"RWF", // Rwanda Franc
-		"SAR", // Saudi Riyal
-		"SBD", // Solomon Islands Dollar
-		"SCR", // Seychelles Rupee
-//		"SDD", // Sudanese Dinar
-		"SEK", // Swedish Krona
-		"SGD", // Singapore Dollar
-//		"SIT", // Slovenian Tolar
-		"SKK", // Slovak Koruna
-		"SLL", // Sierra Leone Leone
-		"SVC", // El Salvador Colon
-		"SZL", // Swaziland Lilageni
-		"THB", // Thai Baht
-		"TND", // Tunisian Dinar
-		"TOP", // Tonga Paanga
-		"TRY", // Turkish Lira
-		"TTD", // Trinidad Tobago Dollar
-		"TWD", // Taiwan Dollar
-		"TZS", // Tanzanian Shilling
-		"UAH", // Ukraine Hryvnia
-		"UGX", // Ugandan Shilling
-		"USD", // United States Dollar
-		"UYU", // Uruguayan New Peso
-//		"VEF", // Venezuelan bolivar
-		"VUV", // Vanuatu Vatu
-		"WST", // Samoa Tala
-		"XAF", // Central African CFA franc
-		"XCD", // East Caribbean Dollar
-		"XOF", // West African CFA franc
-		"XPF", // Pacific Franc
-		"YER", // Yemen Riyal
-		"ZAR", // South African Rand
-		"ZMK"  // Zambian Kwacha
-	],
 	agent,
 	requests,
 	responses;
@@ -175,38 +48,61 @@ function log() {
 		console.log.apply(console, [].slice.call(arguments));
 	}
 	return false;
-};
+}
 
 // Returns a date object set to UTC time for dateJS chaining:
 function getUTC() {
 	return Date.parse('now').add({ hours: -parseInt(Date.today().getUTCOffset(), 10) });
 }
 
+// Sorts arrays by key
+function sortArrayByKey(arr) {
+	// Setup Arrays
+	var sortedKeys = [];
+	var sortedObj = {};
+
+	// Separate keys and sort them
+	for (var i in arr) {
+		sortedKeys.push(i);
+	}
+	sortedKeys.sort();
+
+	// Reconstruct sorted obj based on keys
+	for (var j in sortedKeys) {
+		sortedObj[sortedKeys[j]] = arr[sortedKeys[j]];
+	}
+	return sortedObj;
+}
 
 // Sets up the agent and starts it with a log message:
 function startAgent() {
 	// Create the array of requests:
-	requests = _.map(currencies, function(each) {
-		return {
+	requests = [{
 			method: 'GET',
-			cc : each,
-			uri : 'remote/ER-ERC-AJAX.php?ConvertTo=' + each + '&ConvertFrom=' + baseCurrency + '&amount=1000000'
-		}
-	});
+			uri : 'webservice/v1/symbols/allcurrencies/quote;currency=true?view=basic&format=json'
+	}];
 	responses = {};
 
 	// Create the HTTP agent:
-	agent = httpAgent.create('www.currency.me.uk', requests);
+	agent = httpAgent.create('finance.yahoo.com', requests);
 
 
 	// The scraper:
 	agent.addListener('next', function (e, agent) {
-		var data = parseFloat((parseFloat(agent.body.replace(/[^0-9-.]/g, '')) / 1000000).toFixed(8));
-		// log(agent.current.cc, ":", data);
+		var data = JSON.parse(agent.body);
+		var resources = data.list.resources;
 
-		// Add this currency conversion rate to the responses object:
-		responses[agent.current.cc] = data;
-	
+		resources.forEach(function (resource) {
+			var fields = resource.resource.fields;
+
+			var currency_match = fields.name.match(/USD\/([A-Z]{3})/);
+			if (currency_match) {
+				var identifier = currency_match[1];
+				var rate = parseFloat(parseFloat(fields.price).toFixed(8));
+				responses[identifier] = rate;
+			}
+		});
+
 		// Move on to the next request after `throttle` milliseconds (spreads the requests to avoid bans):
 		setTimeout(function() {
 			agent.next();
@@ -223,7 +119,7 @@ function startAgent() {
 			license : "all code open-source under GPL v3 [http://www.opensource.org/licenses/GPL-3.0]. all data made available by various providers; copyright may apply; not for resale; no warranties given.",
 			timestamp : Math.round( ( getUTC() ).getTime() / 1000 ),
 			base: baseCurrency,
-			rates : responses
+			rates : sortArrayByKey(responses)
 		};
 	
 		log("[" + new Date().toUTCString() + "]: agent finished");
@@ -235,13 +131,13 @@ function startAgent() {
 					fs.writeFile("latest.json", JSON.stringify(api, false, "\t") + "\n", function(err) {
 						callback(err);
 					});
-		 		},
+				},
 				function(callback) {
 					var filename = "./historical/" + (getUTC()).toString("yyyy-MM-dd") + ".json";
 					fs.writeFile(filename, JSON.stringify(api, false, "\t") + "\n", function(err) {
 						callback(err);
 					});
-		 		}
+				}
 			],
 			function(err) {
 				// To do: add some error/success logging:
