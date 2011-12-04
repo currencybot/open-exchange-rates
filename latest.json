@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "all code open-source under GPL v3 [http://www.opensource.org/licenses/GPL-3.0]. all data made available by various providers; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1323011499,
+	"timestamp": 1323015102,
 	"base": "USD",
 	"rates": {
 		"AED": 3.67000083,
@@ -51,7 +51,7 @@
 		"ILS": 3.75550298,
 		"INR": 51.16751624,
 		"IQD": 1169.80048858,
-		"IRR": 7470.45735793,
+		"IRR": 10872.80200819,
 		"ISK": 118.52045063,
 		"JMD": 86.17224819,
 		"JOD": 0.70951071,
