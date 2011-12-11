@@ -1,6 +1,2 @@
 .DS_Store
-err.log
-out.log
-forever.log
-f_out.log
-fo_err.log
+*.log
