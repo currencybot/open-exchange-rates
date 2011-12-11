@@ -1,5 +1,5 @@
 /**
- * scraper.js v0.1 - part of the open-source exchange rates project
+ * scraper.js v0.2.1 - part of the open-source exchange rates project
  * by @josscrowcroft - josscrowcroft.com
  *
  * Scrapes currency conversion rates one-by-one from a web service, then saves them
