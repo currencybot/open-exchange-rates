@@ -112,7 +112,9 @@ function startAgent() {
 	
 	// Save the file and push to git when agent is done collecting data:
 	agent.addListener('stop', function (e, agent) {
-	
+		// temporary kludge, should work though:
+		responses[baseCurrency] = 1;
+		
 		// Build API data:
 		var api = {
 			disclaimer : "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
