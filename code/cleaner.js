@@ -61,7 +61,9 @@ fs.readdir('../historical/', function(err, files) {
 			}, {});
 
 			// Write file contents:
-			fs.writeFileSync('../historical/' + file, JSON.stringify(api, false, "\t") + "\n");
+			fs.writeFileSync('../historical/' + file, JSON.stringify(json, false, "\t") + "\n");
+
+			console.log(file);
 		});
 	});
 });
