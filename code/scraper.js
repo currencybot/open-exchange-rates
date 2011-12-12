@@ -85,7 +85,6 @@ function startAgent() {
 	// Create the HTTP agent:
 	agent = httpAgent.create('finance.yahoo.com', requests);
 
-
 	// The scraper:
 	agent.addListener('next', function (e, agent) {
 		var data = JSON.parse(agent.body);
@@ -116,8 +115,8 @@ function startAgent() {
 		
 		// Build API data:
 		var api = {
-			disclaimer : "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
-			license : "all code open-source under GPL v3 [http://www.opensource.org/licenses/GPL-3.0]. all data made available by various providers; copyright may apply; not for resale; no warranties given.",
+			disclaimer : "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!";
+			license : "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.";
 			timestamp : Math.round( ( getUTC() ).getTime() / 1000 ),
 			base: baseCurrency,
 			rates : sortArrayByKey(responses)
