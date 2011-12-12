@@ -12,11 +12,10 @@
  *
  * More info: http://josscrowcroft.github.com/open-exchange-rates/
  *
- * License: http://www.opensource.org/licenses/GPL-3.0
+ * This code released under MIT license
  */
 
-var sys = require('sys'),
-	argv = require('optimist').argv,
+var argv = require('optimist').argv,
 	_ = require('underscore'),
 	httpAgent = require('http-agent'),
 	async = require('async'),
