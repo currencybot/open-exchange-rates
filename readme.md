@@ -27,8 +27,11 @@ Originally designed for use with **[money.js](http://josscrowcroft.github.com/mo
 
 ## Changelog and updates
 
+### 2011-12-13
+* [openexchangerates.org](http://openexchangerates.org/latest.json) proxy now supports JSONP requests - add a `callback` parameter to the URL, or use jQuery.ajax with `dataType: 'jsonp'`. Also, files are downloaded, cached and served statically every 15 minutes, which should mean response times are much faster. [josscrowcroft]
+
 ### 2011-12-10
-* Merged in almost 400,000 lines of historical data back to 1999 from [[canbuffi](https://github.com/canbuffi)], plus changes to crawler to colelct data from Yahoo! Finance. [josscrowcroft]
+* Merged in almost 400,000 lines of historical data back to 1999 from [[canbuffi](https://github.com/canbuffi)], plus changes to crawler to collect data from Yahoo! Finance. [josscrowcroft]
 
 ### 2011-10-14
 * Rewrote the scraper to use a different provider without the TOS grey-area, until we know that Google won't sue for (ab)using their Calculator API in this way. Also, the data doesn't require parsing like before. [josscrowcroft]
