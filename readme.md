@@ -28,6 +28,7 @@ Originally designed for use with **[money.js](http://josscrowcroft.github.com/mo
 ## Changelog and updates
 
 ### 2011-12-13
+* Restarting data collection! [currencybot]
 * [openexchangerates.org](http://openexchangerates.org/latest.json) proxy now supports JSONP requests - add a `callback` parameter to the URL, or use jQuery.ajax with `dataType: 'jsonp'`. Also, files are downloaded, cached and served statically every 15 minutes, which should mean response times are much faster. [josscrowcroft]
 
 ### 2011-12-10
