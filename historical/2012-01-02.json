@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1325473296,
+	"timestamp": 1325476896,
 	"base": "USD",
 	"rates": {
 		"AED": 3.6731,
@@ -31,7 +31,7 @@
 		"BZD": 1.9855,
 		"CAD": 1.0198,
 		"CDF": 910.820923,
-		"CHF": 0.93988,
+		"CHF": 0.94135,
 		"CLF": 0.02331,
 		"CLP": 519.474976,
 		"CNY": 6.3057,
@@ -57,7 +57,7 @@
 		"GNF": 7237.5,
 		"GTQ": 7.8125,
 		"GYD": 203.449997,
-		"HKD": 7.7668,
+		"HKD": 7.76685,
 		"HNL": 18.98,
 		"HRK": 5.8366,
 		"HTG": 40.349998,
