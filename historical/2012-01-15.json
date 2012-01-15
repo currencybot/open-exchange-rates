@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1326657696,
+	"timestamp": 1326661296,
 	"base": "USD",
 	"rates": {
 		"AED": 3.6732,
@@ -47,7 +47,7 @@
 		"EGP": 6.044,
 		"ETB": 17.334249,
 		"EUR": 0.788675,
-		"FJD": 1.806,
+		"FJD": 1.8093,
 		"FKP": 0.6526,
 		"GBP": 0.652848,
 		"GEL": 1.6721,
