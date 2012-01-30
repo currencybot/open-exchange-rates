@@ -144,8 +144,12 @@ function startAgent() {
 				if( !err && !argv.nocommit ) {
 					// Commit changes to git repository and push when done:
 					exec('git add . && git commit -am "exchange rates as of [' + new Date().toUTCString() + ']"', function(err, stdout, stderr) {
+						if ( err || stderr ) log("[" + new Date().toUTCString() + "]: git add/commit:", err, stderr);
 						if ( !argv.nopush ) {
-							exec('git push origin master');
+							exec('git push origin master', function(err, stdout, stderr) {
+								if ( err || stderr ) log("[" + new Date().toUTCString() + "]: git push:", err, stderr);
+							});
+							
 						}
 					});
 				}
