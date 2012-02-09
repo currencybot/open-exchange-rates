@@ -68,7 +68,9 @@ function sortArrayByKey(arr) {
 
 	// Reconstruct sorted obj based on keys
 	for (var j in sortedKeys) {
-		sortedObj[sortedKeys[j]] = arr[sortedKeys[j]];
+		if ( sortedKeys.hasOwnProperty(j) ) {
+			sortedObj[sortedKeys[j]] = arr[sortedKeys[j]];
+		}
 	}
 	return sortedObj;
 }
