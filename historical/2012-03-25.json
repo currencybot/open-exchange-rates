@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1332709928,
+	"timestamp": 1332713528,
 	"base": "USD",
 	"rates": {
 		"AED": 3.6732,
@@ -54,7 +54,7 @@
 		"GHS": 1.7625,
 		"GIP": 0.63005,
 		"GMD": 29.700001,
-		"GNF": 7102.5,
+		"GNF": 7050,
 		"GTQ": 7.7565,
 		"GYD": 202.649994,
 		"HKD": 7.76787,
