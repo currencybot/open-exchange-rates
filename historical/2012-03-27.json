@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1332886328,
+	"timestamp": 1332889928,
 	"base": "USD",
 	"rates": {
 		"AED": 3.6733,
@@ -39,7 +39,7 @@
 		"CRC": 504.5,
 		"CUP": 1,
 		"CVE": 83,
-		"CZK": 18.4503,
+		"CZK": 18.438499,
 		"DJF": 179.460007,
 		"DKK": 5.5827,
 		"DOP": 39.025002,
@@ -114,7 +114,7 @@
 		"PGK": 2.0534,
 		"PHP": 42.91,
 		"PKR": 90.849998,
-		"PLN": 3.10845,
+		"PLN": 3.1121,
 		"PYG": 4265,
 		"QAR": 3.6418,
 		"RON": 3.2815,
