@@ -124,6 +124,7 @@ function startAgent() {
 			rates : sortArrayByKey(responses)
 		};
 	
+		log("timestamp: " + Math.round( ( getUTC() ).getTime() / 1000 ) + " (" + getUTC().toString() + ")");
 		log("[" + new Date().toUTCString() + "]: agent finished");
 		
 		// Write the latest and historical files, then commit and push to git when all done:
