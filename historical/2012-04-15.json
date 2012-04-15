@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
 	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.",
-	"timestamp": 1334525999,
+	"timestamp": 1334529599,
 	"base": "USD",
 	"rates": {
 		"AED": 3.6732,
@@ -14,7 +14,7 @@
 		"AUD": 0.963577,
 		"AWG": 1.7902,
 		"AZN": 0.786,
-		"BAM": 1.49875,
+		"BAM": 1.50015,
 		"BBD": 2,
 		"BDT": 81.790001,
 		"BGN": 1.492,
@@ -54,7 +54,7 @@
 		"GHS": 1.8005,
 		"GIP": 0.63115,
 		"GMD": 30,
-		"GNF": 7080,
+		"GNF": 7050,
 		"GTQ": 7.7285,
 		"GYD": 203.449997,
 		"HKD": 7.7605,
