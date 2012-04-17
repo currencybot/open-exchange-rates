@@ -14,6 +14,10 @@ import json
 import requests
 
 URL_TEMPLATE = "https://raw.github.com/currencybot/open-exchange-rates/master/%s"
+USE_SESSION = True
+
+if USE_SESSION:
+    s = requests.session()
 
 def rate(currency, date=None):
     """Download FX rate against USD.
@@ -36,7 +40,10 @@ def rate(currency, date=None):
         url = URL_TEMPLATE % "historical/20%s-%s-%s.json"
         url = url % (date[:2], date[2:4], date[4:])
 
-    text = requests.get(url).text
+    if USE_SESSION:
+        text = s.get(url).text
+    else:
+        text = requests.get(url).text
     data = json.loads(text)
 
     assert data['base'] == "USD"
