@@ -1,7 +1,7 @@
 {
-	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!",
-	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.",
-	"timestamp": "954115200",
+	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability, or fitness for any purpose; use at your own risk. Other than that, have fun! More info: http://openexchangerates.org/terms/",
+	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given. Full license info: http://openexchangerates.org/license/",
+	"timestamp": 954115200,
 	"base": "USD",
 	"rates": {
 		"AED": 3.67242,
