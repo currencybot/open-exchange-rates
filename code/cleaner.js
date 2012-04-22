@@ -1,11 +1,11 @@
 /**
- * cleaner.js v0.0.1 - part of the open-source exchange rates project
+ * cleaner.js v0.0.2 - part of the open-source exchange rates project
  * by @josscrowcroft - josscrowcroft.com
  *
  * Cleans historical data files: ensures base rate is contained in rates object,
  * parses float values, sorts rates A-Z.
  *
- * Can be used to change license and disclaimer across all files at once.
+ * Can be used to change properties across all API JSON files at once.
  *
  * More info: http://josscrowcroft.github.com/open-exchange-rates/
  *
@@ -46,10 +46,13 @@ fs.readdir('../historical/', function(err, files) {
 			var json = JSON.parse(data);
 
 			// Update disclaimer:
-			json.disclaimer = "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk. Other than that - have fun, and please share/watch/fork if you think data like this should be free!";
+			json.disclaimer = "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability, or fitness for any purpose; use at your own risk. Other than that, have fun! More info: http://openexchangerates.org/terms/";
 			
 			// Update license:
-			json.license = "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given.";
+			json.license = "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given. Full license info: http://openexchangerates.org/license/";
+
+			// Make sure timestamp is an integer:
+			json.timestamp = parseInt(json.timestamp, 10);
 
 			// Make sure the base currency is also in the rates object, eg. `USD: 1`
 			json.rates[json.base] = 1;
