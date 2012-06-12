@@ -1,7 +1,7 @@
 {
 	"disclaimer": "This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability, or fitness for any purpose; use at your own risk. Other than that, have fun! More info: http://openexchangerates.org/terms/",
 	"license": "Data collected from various providers with public-facing APIs; copyright may apply; not for resale; no warranties given. Full license info: http://openexchangerates.org/license/",
-	"timestamp": 1339540116,
+	"timestamp": 1339543716,
 	"base": "USD",
 	"rates": {
 		"AED": 3.6732,
@@ -14,7 +14,7 @@
 		"AUD": 1.004596,
 		"AWG": 1.79,
 		"AZN": 0.7858,
-		"BAM": 1.56735,
+		"BAM": 1.56695,
 		"BBD": 2,
 		"BDT": 81.959999,
 		"BGN": 1.5654,
@@ -151,7 +151,7 @@
 		"UYU": 21.35,
 		"UZS": 1871.439941,
 		"VEF": 4.2951,
-		"VND": 20913,
+		"VND": 20865,
 		"VUV": 94.800003,
 		"WST": 2.386975,
 		"XAF": 524.597778,
